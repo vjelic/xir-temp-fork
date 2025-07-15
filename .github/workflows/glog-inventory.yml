@@ -19,7 +19,7 @@ jobs:
           ref: feature/inventory
 
       - name: Run Glog.AI inventory from private repo
-        uses: ./.github/glog-action/inventory
+        uses: ./.github/glog-action
         with:
           github-owner: 'vjelic'
           github-owner-type: 'user'
