@@ -1,0 +1,28 @@
+name: Glog.AI Inventory
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  glog-scan-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout glog-action repository
+        uses: actions/checkout@v4
+        with:
+          repository: glogai/glog-action
+          token: ${{ secrets.PAT_TOKEN }}
+          path: .github/glog-action
+          ref: feature/inventory
+
+      - name: Run Glog.AI inventory from private repo
+        uses: ./.github/glog-action/inventory
+        with:
+          github-owner: 'vjelic'
+          github-owner-type: 'user'
+          github-token: ${{ secrets.PAT_TOKEN }}
+          glog-token: ${{ secrets.GLOG_TOKEN }}
+          glog-api-url: 'https://test.glog.ai'
